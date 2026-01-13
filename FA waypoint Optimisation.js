@@ -264,7 +264,6 @@ function Time(hrs){
 }
 
 Execute();
-InitialAlert();
 
 window.addEventListener('hashchange', (e)=>{
     Execute();
@@ -272,7 +271,7 @@ window.addEventListener('hashchange', (e)=>{
 
 async function Execute(){
     if (window.location.hash == "#waypoints"){
-
+        InitialAlert();
         while(info.children.length < 1){
             await new Promise(resolve => setTimeout(resolve, 1000));
         }
@@ -342,7 +341,7 @@ async function InitialAlert(){
     }
     let msg = document.querySelector('#opt_message');
     if (!msg){
-        msg = document.createElement('div');
+        msg = document.createElement('div'); msg.id = "opt_message";
         document.querySelector('#event_banner').nextElementSibling.append(msg);
         msg.style.cursor = "pointer"; msg.style.width = '100%';
         msg.addEventListener('click', ()=>{
@@ -356,18 +355,20 @@ async function InitialAlert(){
     p.textContent = `Kspar's Optimiser is now Active`;
     content.push(p);
     for(let block of [`<- Inputs are this way`,
-        `<strong>Active Players:</strong> <br>  number of members contributing to the current FA.`,
-        `<strong>Elites:</strong> <br>  members at or above chapter 5.<br>  These members are better suited to MA badges, and are the only ones with access to wonders / ghosts in bottles.`,
-        `<strong>Devout:</strong> <br>  members contributing excess tiles to workshops / manufactories.<br>  Lower level players generally have access to more free space / population.`,
-        `<strong>Shops:</strong> <br>  average number of workshops per member + average extra workshops provided by the devout`,
-        `<strong>Factories:</strong> <br>  average manufactory pairs per member + average extra pairs provided by the devout`,
+        `<strong>Active Players:</strong><br>number of members contributing to the current FA.`,
+        `<strong>Elites:</strong><br>members at or above chapter 5.<br>These members are better suited to MA badges, and are the only ones with access to wonders / ghosts in bottles.`,
+        `<strong>Devout:</strong><br>members contributing excess tiles to workshops / manufactories.<br>Lower level players generally have access to more free space / population.`,
+        `<strong>Shops:</strong><br>average number of workshops per member + average extra workshops provided by the devout`,
+        `<strong>Factories:</strong><br>average manufactory pairs per member + average extra pairs provided by the devout`,
+        `<strong>Timeline:</strong><br>shows the cumulative time to finish each selected map. The times at the top of each map table is the predicted time to finish just that map segment, and the timesteps at each node are also cumulative, from start to finishing that node.`,
         `Set inputs should be preserved after the browser is closed & reopened, as well as the badge tracker.`,
         `Remember, if using the optimiser with multiple members, to synchronise your input values.`,
         `For some reason, Map 3 has trouble on the first load. toggling any value up & down fixes this.`,
         `Optimiser will ignore selecting "all paths" for any map, but that's more of an endgame issue.`,
         `Click this section to compress / expand.`
     ]){
-        let p = document.createElement('pre'); p.style.fontSize = "12px";
+        let p = document.createElement('pre'); p.style.fontSize = "12px"; 
+        p.style.whiteSpace = "pre-wrap"; p.style.textIndent = "-15px"; p.style.paddingLeft = "15px";
         p.innerHTML = block; p.style.display = localStorage.FA_opt ? "none" : "";
         content.push(p);
     }
