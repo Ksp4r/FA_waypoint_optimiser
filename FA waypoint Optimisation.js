@@ -28,29 +28,35 @@ Score = {
         let brew = tally["Dwarven Brewery Badge"] * 25 * 0.08;
         let carp = tally["Carpenters Guild Badge"] * 10 * 3;
         let farm = tally["Farmers Guild Badge"] * 10 * 9;
-        let black = tally["Blacksmith Guild Badge"] * 5 * 24;
-        let result = brew + carp + farm + black;
-        return this.balance(result / (workshops + workshops2), result / workshops, devout) / active;
+        let black_high = (tally["Blacksmith Guild Badge"] * 5 - workshops - workshops2) * 24;
+        let black_low = (tally["Blacksmith Guild Badge"] * 5 - workshops) * 24;
+        let high = (brew + carp + farm + black_high) / (workshops + workshops2);
+        let low = (brew + carp + farm + black_low) / workshops;
+        return this.balance(high, low, devout) / active;
     },
     Goods(tally){
         let {active, manufactories, manufactories2, devout} = this;
         let brac = 0;
         let neck = tally["Diamond Necklace"] * 4 * 24;
-        let stat = tally["Elegant Statue"] * 2 * 48;
-        let result = brac + neck + stat;
-        return this.balance(result / (manufactories + manufactories2), result / manufactories, devout) / active;
+        let stat_high = (tally["Elegant Statue"] * 2 - manufactories - manufactories2) * 48;
+        let stat_low = (tally["Elegant Statue"] * 2 - manufactories) * 48;
+        let high = (brac + neck + stat_high) / (manufactories + manufactories2);
+        let low = (brac + neck + stat_low) / manufactories;
+        return this.balance(high, low, devout) / active;
     },
     Magic(tally){
         let {active, elite} = this;
+        let ench = Math.max(tally["Witch Hat"] * 2, tally["Enchanted Tiara"] * 3);
+
         let high = Math.max(
-            (tally["Witch Hat"] * 24/3) + (tally["Druid Staff"] * 24/2),
-            ((3 * tally["Enchanted Tiara"] - 2 * tally["Witch Hat"]) * 24/3),
-            (tally["Recycled Potion"] * 24)
+            ench * 4 + (tally["Druid Staff"] * 2 - 5) * 6,
+            tally["Recycled Potion"] * 24,
+            tally["Arcane Residue"] * 24 / 1.3,
         );
         let low = Math.max(
-            (tally["Witch Hat"] * 2 * 13) + (tally["Druid Staff"] * 2 * 19.5),
-            ((3 * tally["Enchanted Tiara"] - 2 * tally["Witch Hat"]) * 13),
-            (tally["Recycled Potion"] * 24)
+            ench * 13 + (tally["Druid Staff"] * 2 - 2) * 19.5,
+            tally["Recycled Potion"] * 24,
+            tally["Arcane Residue"] * 24 / 1.3,
         );
         return this.balance(high, low, elite) / active;
     },
@@ -62,15 +68,15 @@ Score = {
     },
     Other(tally){
         let {active, elite} = this;
-        let wonder = tally["Wonder Society Badge"] * 20 * 2 * active / elite;
+        let wonder = tally["Wonder Society Badge"] * 20 * active / elite;
         let coin = 0;
-        let residue = tally["Arcane Residue"] * 9 * 6;
-        return Math.max(wonder, coin, residue) / active;
+        return Math.max(wonder, coin) / active;
     },
     final(tally){
         return Math.max(this.Supplies(tally), this.Goods(tally), this.Magic(tally), this.Military(tally), this.Other(tally));
     }
 };
+
 
 class node{
     constructor(cell){
@@ -110,6 +116,7 @@ class node{
         }
     }
 }
+
 class route{
     get cells(){
         let result = [];
@@ -144,7 +151,9 @@ class Map{
         if (this.override){
             return this[this.override];
         }
-
+        return this._best;
+    }
+    get _best(){
         let min = Math.min(
             Score.final(Combine(this.orange.nodes)), 
             Score.final(Combine(this.green.nodes)), 
@@ -169,10 +178,14 @@ class Map{
         this.blue = new Blue(number);
         this.green = new Green(number);
 
+        this.Opt();
+    }
+    Opt(){
+        let {table, number, orange, blue, green} = this;
+
         let lab = document.querySelector(`#opt_pick_${number}`);
         if (!lab){
             lab = document.createElement('h3'); lab.id = `opt_pick_${number}`;
-            lab.style.color = this.best.shade;
             let c = document.createElement('div');
             c.style.textAlign = "center";
             c.append(lab);
@@ -180,13 +193,15 @@ class Map{
             fieldset.querySelector(`#calculate_${this.best.constructor.name.toLowerCase()}_${number}`).click();
             fieldset.append(c);
         }
-        lab.textContent = `Best Path: ${this.best.constructor.name}`; 
-        this.Opt();
-    }
-    Opt(){
-        let {table, number, orange, blue, green} = this;
+        lab.textContent = `Best Path: ${this._best.constructor.name}`; lab.style.color = this._best.shade;
+
         for (let p of [orange, blue, green]){
-            let s = Score.final(Combine(p.nodes));
+            let tally = Combine(p.nodes);
+            
+            for (let i = 1; i < number; i++){
+                tally = Combine(Maps[`m${i}`].best.nodes, tally);
+            }
+            let s = Score.final(tally);
             let cs = document.querySelector(`#opt_score_${p.colour}_${number}`);
             if (!cs){
                 cs = document.createElement('span'); cs.id = `opt_score_${p.colour}_${number}`;
@@ -254,20 +269,15 @@ function Combine(nodes, init = {}){
 }
 
 function Time(hrs){
-    let time = hrs;
-    let days = Math.trunc(time / 24);
-    let hours = Math.trunc(time - days * 24);
-    let minutes = Math.trunc((time - days * 24 - hours) * 60);
-    if (days > 0)  return `${days}d ${hours}h ${minutes}m`;
-    if (hours > 0)  return `${hours}h ${minutes}m`;
-    return `${minutes}m`;
+    let time = (6 * 24) - hrs;
+    let sign = time < 0 ? '-' : '';
+    let days = Math.trunc(Math.abs(time) / 24);
+    let hours = Math.trunc(Math.abs(time) - days * 24);
+    let minutes = Math.trunc((Math.abs(time) - days * 24 - hours) * 60);
+    if (days > 0)  return `${sign}${days}d ${hours}h ${minutes}m`;
+    if (hours > 0)  return `${sign}${hours}h ${minutes}m`;
+    return `${sign}${minutes}m`;
 }
-
-Execute();
-
-window.addEventListener('hashchange', (e)=>{
-    Execute();
-});
 
 async function Execute(){
     if (window.location.hash == "#waypoints"){
@@ -356,7 +366,7 @@ async function InitialAlert(){
     content.push(p);
     for(let block of [`<- Inputs are this way`,
         `<strong>Active Players:</strong><br>number of members contributing to the current FA.`,
-        `<strong>Elites:</strong><br>members at or above chapter 5.<br>These members are better suited to MA badges, and are the only ones with access to wonders / ghosts in bottles.`,
+        `<strong>Elites:</strong><br>members at or above chapter 5, with a level 5 Magic Academy<br>These members are better suited to MA badges, and are the only ones with access to wonders / ghosts in bottles.`,
         `<strong>Devout:</strong><br>members contributing excess tiles to workshops / manufactories.<br>Lower level players generally have access to more free space / population.`,
         `<strong>Shops:</strong><br>average number of workshops per member + average extra workshops provided by the devout`,
         `<strong>Factories:</strong><br>average manufactory pairs per member + average extra pairs provided by the devout`,
@@ -377,3 +387,9 @@ async function InitialAlert(){
         localStorage.FA_opt = JSON.stringify(Score);
     }
 }
+
+Execute();
+
+window.addEventListener('hashchange', (e)=>{
+    Execute();
+});
