@@ -11,5 +11,3 @@ That should be it, the script should run every time you load the page, so long a
 I totally understand if you're hesitant to just add some random sketchy code from some guy you know over the internet and try to run it on your computer. No pressure, was just a fun little project to play around with.
 
 Good luck, and have fun.
-
-Kspar, the ever-faithful.
