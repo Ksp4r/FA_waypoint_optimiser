@@ -12,4 +12,4 @@ I totally understand if you're hesitant to just add some random sketchy code fro
 
 Good luck, and have fun.
 
-Kspar, the ever-faithful servant.
+Kspar, the ever-faithful.
