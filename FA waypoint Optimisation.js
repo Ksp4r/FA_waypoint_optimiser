@@ -154,12 +154,16 @@ class Map{
         return this._best;
     }
     get _best(){
-        let min = Math.min(
-            Score.final(Combine(this.orange.nodes)), 
-            Score.final(Combine(this.green.nodes)), 
-            Score.final(Combine(this.blue.nodes))
-        );
-        return [this.orange, this.blue, this.green].find(x => Score.final(Combine(x.nodes)) == min);
+		let tally = {};
+		for (let i = 1; i < this.number; i++){
+			tally = Combine(Maps[`m${i}`].best.nodes, tally);
+		}
+		let scores = [
+			Score.final(Combine(this.orange.nodes, tally)), 
+            Score.final(Combine(this.blue.nodes, tally)), 
+            Score.final(Combine(this.green.nodes, tally))
+		];
+        return [this.orange, this.blue, this.green][scores.indexOf(Math.min(...scores))];
     }
     constructor(number){
         this.override = undefined;
@@ -370,12 +374,12 @@ async function InitialAlert(){
         `<strong>Devout:</strong><br>members contributing excess tiles to workshops / manufactories.<br>Lower level players generally have access to more free space / population.`,
         `<strong>Shops:</strong><br>average number of workshops per member + average extra workshops provided by the devout`,
         `<strong>Factories:</strong><br>average manufactory pairs per member + average extra pairs provided by the devout`,
-        `<strong>Timeline:</strong><br>shows the cumulative time to finish each selected map. The times at the top of each map table is the predicted time to finish just that map segment, and the timesteps at each node are also cumulative, from start to finishing that node.`,
+        `<strong>Timeline:</strong><br>All timestamps count backwards from 6 days, so you can compare them to the time remaining. The timeline on the left shows the time remaining at the end of each of the selected map routes. The times at the top of each map table is the remaining time at the end of each route, after the previous selected route.<br>Timesteps are also given at each noode to show predicted progress.`,
         `Set inputs should be preserved after the browser is closed & reopened, as well as the badge tracker.`,
         `Remember, if using the optimiser with multiple members, to synchronise your input values.`,
         `For some reason, Map 3 has trouble on the first load. toggling any value up & down fixes this.`,
         `Optimiser will ignore selecting "all paths" for any map, but that's more of an endgame issue.`,
-        `Click this section to compress / expand.`
+        `Click this section to hide it.`
     ]){
         let p = document.createElement('pre'); p.style.fontSize = "12px"; 
         p.style.whiteSpace = "pre-wrap"; p.style.textIndent = "-15px"; p.style.paddingLeft = "15px";
