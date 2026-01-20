@@ -21,4 +21,4 @@ For those that have trouble keeping track of culture distribution throughout the
 The Building ranker, when injected into <a href="https://www.elvenarchitect.com" target="_blank">ElvenArchitect.com</a>, gives you the option to highlight and rank all culture/population buildings based on a value/tile score and returns an average culture/population per tile across them all.
 Buildings are ranked from 0 upwards with the key showing each rank's score, so finding buildings to replace should be relatively straightforward. Simply add the building you're thinking of from the "build" menu button and click the ranking button again to recalculate.
 
-Easiest way about this is to first find your username on <a href="https//elvenstats.com">ElvenStats.com</a>, update your info then click the "view city in elven architect" link.
+Easiest way about this is to first find your username on <a href="https://elvenstats.com">ElvenStats.com</a>, update your info then click the "view city in elven architect" link.
