@@ -11,3 +11,9 @@ That should be it, the script should run every time you load the page, so long a
 I totally understand if you're hesitant to just add some random sketchy code from some guy you know over the internet and try to run it on your computer. No pressure, was just a fun little project to play around with.
 
 Good luck, and have fun.
+
+# EA_Building Ranker
+
+For those that have trouble keeping track of culture distribution throughout their cities, the Building ranker, when injected into <a href="www.elvenarchitect.com" target="_blank">ElvenArchitect</a>, gives you the option to highlight and rank all culture/population buildings based on a number/tile score and returns an average culture/population per tile across them all. Easiest way about this is to first find your username on <a href="elvenstats.com">ElvenStats</a>, update your info then click the "view city in elven architect" link.
+
+Hope this helps.
