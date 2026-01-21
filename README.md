@@ -1,7 +1,7 @@
 
 To use this code, you'll first want to install a browser extension that can inject it into a webpage. I use <a href="https://addons.mozilla.org/en-US/firefox/addon/codeinjector/?utm_content=addons-manager-reviews-link&utm_medium=firefox-browser&utm_source=firefox-browser" target="_blank">Code Injector</a> for firefox, you can also try [User JavaScript and CSS](https://chromewebstore.google.com/detail/user-javascript-and-css/nbhcbdghjpllgmfilhnhkllmkecfmpld?hl=en-US&utm_source=ext_sidebar) for chrome. There are other ways of doing this, like HTML overrides and such, but this seems to be the easiest and most consistent, so i'll suggest this method for now.
 
-Once you have your extension of choice, navigate to the specific webpage each code is designed for, then open the extension and copy the js file content from this repository into the "script" section. You don't even need to download the file, just open it from here, copy the contents and paste it in.
+Once you have your extension of choice, copy the javaScript content you want to use from this repository, navigate to the specific webpage it is designed for, then open the extension and paste the code into the "script" section. You don't even need to download the file, just open it from here and copy the contents.
 
 That should be about all you need to do, the script should run every time the page is loaded.
 
