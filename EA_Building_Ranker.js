@@ -9,14 +9,14 @@ function parse(){
         let tiles = +b.style.width.replace('px','') / 22 * +b.style.height.replace('px','') / 22;
         let pop = 0, cul = 0;
         if (params){
-            pop = params.match(/[0-9]+ Population/);
-            cul = params.match(/[0-9]+ Culture/);
+            pop = params.match(/[,||0-9]+ Population/);
+            cul = params.match(/[,||0-9]+ Culture/);
         }
         let target = {
             'title':title,
             'tiles':tiles,
-            'Culture':cul ? +cul[0].replace(' Culture','') / tiles : 0,
-            'Population':pop ? +pop[0].replace(' Population','') / tiles : 0,
+            'Culture':cul ? +cul[0].replace(' Culture','').replace(/,/g,"") / tiles : 0,
+            'Population':pop ? +pop[0].replace(' Population','').replace(/,/g,"") / tiles : 0,
             'nodes':[b],
         }
         if (!oFind(buildings, target)){
@@ -127,4 +127,5 @@ for (let i of buttons){
     Object.assign(i.style, {position:'fixed', left:'15px', top:`${y}px`});
     if (i.constructor.name == "HTMLAnchorElement") i.style.cursor = "pointer";
     y += 30;
+
 }
