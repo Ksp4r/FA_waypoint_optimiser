@@ -74,14 +74,6 @@ function EA_Rank_Click(e){
                 v.style.backgroundColor = `color-mix(transparent 20%, darkred)`;
                 v.style.color = 'white';
             }
-            /*if (v.value >= buildings[med][param]){
-                const rate = (v.value - buildings[med][param]) / (max - buildings[med][param]);
-                v.style.backgroundColor = `color-mix(transparent 20%, color-mix(lightgreen ${rate * 100}%, yellow))`;
-            } else {
-                const rate = (v.value - min) / (buildings[med][param] - min);
-                v.style.backgroundColor = `color-mix(transparent 40%, color-mix(goldenrod ${rate * 100}%, darkred))`;
-                v.style.color = 'white';
-            }*/
         } else {
             v.rank = "";
             v.style = {};
@@ -146,6 +138,4 @@ for (let i of buttons){
     Object.assign(i.style, {position:'fixed', left:'15px', top:`${y}px`});
     if (i.constructor.name == "HTMLAnchorElement") i.style.cursor = "pointer";
     y += 30;
-
 }
-
