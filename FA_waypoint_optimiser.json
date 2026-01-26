@@ -1,0 +1,11 @@
+{
+  "name": "Elvenar Adventure Waypoint Optimiser",
+  "author": "Kspar",
+  "description":"Map optimiser for idavie-elvenar.com",
+  "selector": "idavis-elvenar",
+  "onLoad": true,
+
+  "code": {
+    "js": "js/FA_waypoint_optimiser.js"
+  }
+}
