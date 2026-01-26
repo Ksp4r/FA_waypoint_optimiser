@@ -89,7 +89,7 @@ function EA_Rank_Click(e){
         values.push(v);
         let r = document.createElement('pre'); r.id = "rank";
         r = document.createElement('pre'); r.id = "rank";
-        Object.assign(r.style, v.style);
+        Object.assign(r.style, v.style);r.style.borderTop = "";
         r.textContent = v.rank;
         for (node of buildings[i].nodes){
             if (v.value > 0){
@@ -144,3 +144,4 @@ for (let i of buttons){
     if (i.constructor.name == "HTMLAnchorElement") i.style.cursor = "pointer";
     y += 30;
 }
+
