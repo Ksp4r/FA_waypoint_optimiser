@@ -45,10 +45,13 @@ function EA_Rank_Click(e){
     e.target.style.color = 'yellow';
     parse();
     buildings.sort((a, b) => b[param] - a[param]);
+    const critical = buildings.filter(b => b[param] > 0);
     const max = buildings[0][param];
-    const min = buildings.filter(b => b[param] > 0).slice(-1)[0][param];
-    const med = Math.floor(buildings.filter(b => b[param] > 0).length / 2);
-    const ave = buildings.reduce((a, b) => a + b[param], 0) / buildings.length;
+    const min = critical.slice(-1)[0][param];
+    const med = Math.floor(critical.length / 2);
+    const ave = critical.reduce((a, b) => a + b[param], 0) / critical.length;
+    const SumSqDiff = critical.reduce((a, b)=> a + (b[param] - ave) ** 2, 0);
+    const StDiv = Math.sqrt(SumSqDiff / critical.length);
     const values = [];
     for (let i = 0; i < buildings.length; i++){
         let v = {'value':buildings[i][param], 'rank':i, node:{}, 'style':{
@@ -57,14 +60,28 @@ function EA_Rank_Click(e){
             position:'absolute', borderRadius:'4px', width:'100%', height:'100%', textAlign:'center',
         }};
         if (v.value > 0){
-            if (v.value >= buildings[med][param]){
+            let Divs = (v.value - ave) / StDiv;
+            if (Divs > 2){
+                v.style.backgroundColor = `color-mix(transparent 20%, lightgreen)`;
+            } else if (Divs > 1){
+                v.style.backgroundColor = `color-mix(transparent 20%, color-mix(lightgreen 50%, yellow))`;
+            } else if (Divs > 0){
+                v.style.backgroundColor = `color-mix(transparent 20%, yellow)`;
+            } else if (Divs > -1){
+                v.style.backgroundColor = `color-mix(transparent 20%, color-mix(goldenrod 50%, darkred))`;
+                v.style.color = 'white';
+            } else {
+                v.style.backgroundColor = `color-mix(transparent 20%, darkred)`;
+                v.style.color = 'white';
+            }
+            /*if (v.value >= buildings[med][param]){
                 const rate = (v.value - buildings[med][param]) / (max - buildings[med][param]);
                 v.style.backgroundColor = `color-mix(transparent 20%, color-mix(lightgreen ${rate * 100}%, yellow))`;
             } else {
                 const rate = (v.value - min) / (buildings[med][param] - min);
                 v.style.backgroundColor = `color-mix(transparent 40%, color-mix(goldenrod ${rate * 100}%, darkred))`;
                 v.style.color = 'white';
-            }
+            }*/
         } else {
             v.rank = "";
             v.style = {};
@@ -88,7 +105,9 @@ function EA_Rank_Click(e){
     });
     lbl.textContent = `Rank - ${param} per tile (Ave: ${ave.toFixed(2)})`;
     key.append(lbl);
+    let mark;
     key.append(...values.filter(i => i.value > 0).map((v) => {
+        let Divs = Math.floor((v.value - ave) / StDiv);
         let d = document.createElement('pre'); Object.assign(d.style, v.style);
         d.textContent = `${v.rank} - ${v.value.toFixed(2)}`;
         d.style.height = ""; d.style.position = "relative"; d.style.margin = '0px';
@@ -129,3 +148,4 @@ for (let i of buttons){
     y += 30;
 
 }
+
