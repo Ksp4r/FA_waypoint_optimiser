@@ -53,21 +53,28 @@ function EA_Rank_Click(e){
     const SumSqDiff = critical.reduce((a, b)=> a + (b[param] - ave) ** 2, 0);
     const StDiv = Math.sqrt(SumSqDiff / critical.length);
     const values = [];
+    let mark;
     for (let i = 0; i < buildings.length; i++){
         let v = {'value':buildings[i][param], 'rank':i, node:{}, 'style':{
             color:'black', 
             display:'inline-block !important', fontWeight:'bold',
             position:'absolute', borderRadius:'4px', width:'100%', height:'100%', textAlign:'center',
         }};
+        if (!mark && v.value < ave){
+            mark = true;
+            v.style.borderTop = '1px dashed';
+        }
         if (v.value > 0){
             let Divs = (v.value - ave) / StDiv;
-            if (Divs > 2){
+            if (Divs > 3){
+                v.style.backgroundColor = `color-mix(transparent 20%, green)`;
+            } else if (Divs > 2){
                 v.style.backgroundColor = `color-mix(transparent 20%, lightgreen)`;
             } else if (Divs > 1){
                 v.style.backgroundColor = `color-mix(transparent 20%, color-mix(lightgreen 50%, yellow))`;
-            } else if (Divs > 0){
-                v.style.backgroundColor = `color-mix(transparent 20%, yellow)`;
             } else if (Divs > -1){
+                v.style.backgroundColor = `color-mix(transparent 20%, yellow)`;
+            } else if (Divs > -2){
                 v.style.backgroundColor = `color-mix(transparent 20%, color-mix(goldenrod 50%, darkred))`;
                 v.style.color = 'white';
             } else {
@@ -97,9 +104,7 @@ function EA_Rank_Click(e){
     });
     lbl.textContent = `Rank - ${param} per tile (Ave: ${ave.toFixed(2)})`;
     key.append(lbl);
-    let mark;
     key.append(...values.filter(i => i.value > 0).map((v) => {
-        let Divs = Math.floor((v.value - ave) / StDiv);
         let d = document.createElement('pre'); Object.assign(d.style, v.style);
         d.textContent = `${v.rank} - ${v.value.toFixed(2)}`;
         d.style.height = ""; d.style.position = "relative"; d.style.margin = '0px';
