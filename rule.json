@@ -1,4 +1,3 @@
-[
   {
     "name":"FA Waypoint Optimiser",
     "author":"Kspar",
@@ -7,4 +6,3 @@
     "selector":"idavis-elvenar\\.com",
     "code":{"js":"js/FA_waypoint_optimisation.js"}
   }
-]
