@@ -3,7 +3,7 @@
     "author":"Kspar",
     "description":"Fellowship Adventure Path Analyser"
     "onLoad":true,
-    "selector":"idavis-elvenar\\.com",
+    "selector":"idavis-elvenar",
     "code":{
       "js":"js/FA_waypoint_optimisation.js"
     }
