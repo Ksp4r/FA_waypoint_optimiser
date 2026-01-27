@@ -2,7 +2,6 @@
     "name":"FA Waypoint Optimiser",
     "author":"Kspar",
     "onLoad":true,
-    "topFrameOnly":true,
     "selector":"idavis-elvenar\\.com",
     "code":{"js":"js/FA_waypoint_optimisation.js"}
   }
