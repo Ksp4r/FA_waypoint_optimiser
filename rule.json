@@ -6,13 +6,5 @@
     "topFrameOnly":true,
     "selector":"idavis-elvenar\\.com",
     "code":{"js":"js/FA_waypoint_optimisation.js"}
-  },
-  {
-    "name":"EA Building Comparator",
-    "author":"Kspar",
-    "onLoad":true,
-    "topFrameOnly":true,
-    "selector":"elvenarchitect\\.com/city/planner",
-    "code":{"js":"js/EA_building_comparator.js"}
-  },
+  }
 ]
