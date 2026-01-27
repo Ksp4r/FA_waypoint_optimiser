@@ -7,7 +7,7 @@
   "onLoad": true,
 
   "code": {
-    "js": "js/FA_waypoint_optimisation.js"
+    "js": "js/FA_waypoint_optimisation.js",
     "css":"",
     "html":""
   }
