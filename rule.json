@@ -3,7 +3,7 @@
 	"author": "Kspar",
 	"description": "Fellowship Adventure Path Analyser",
 
-	"selector": "idavis-elvenar",
+	"selector": "elvenar",
 	"onLoad": true,
 
 	"code": {
