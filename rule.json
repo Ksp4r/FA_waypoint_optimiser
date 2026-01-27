@@ -1,14 +1,12 @@
 {
-  "name":"FA Waypoint Optimiser",
-  "author":"Kspar",
-  "description":"Fellowship Adventure Path Analyser",
+  "name": "FA Waypoint Optimiser",
+  "author": "Kspar",
+  "description": "Fellowship Adventure Path Analyser",
   
-  "selector":"idavis-elvenar",
-  "onLoad":true,
+  "selector": "idavis-elvenar",
+  "onLoad": true,
 
-  "code":{
-    "js":"js/FA_waypoint_optimisation.js",
-    "css":"",
-    "html":""
+  "code": {
+    "js": "js/FA_waypoint_optimisation.js"
   }
 }
