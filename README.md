@@ -22,3 +22,9 @@ The Building ranker, when injected into <a href="https://www.elvenarchitect.com"
 Buildings are ranked from 0 upwards with the key showing each rank's score, so finding buildings to replace should be relatively straightforward. Simply add the building you're thinking of from the "build" menu button and click the ranking button again to recalculate.
 
 Easiest way about this is to first find your username on <a href="https://elvenstats.com">ElvenStats.com</a>, update your info then click the "view city in elven architect" link.
+
+# Spire Guide
+
+The Spire Guide simplifies negotiations at the Spire of Eternity. Estimations are pretty generic at the moment, so don't expect a miracle, but it takes a lot of the preprocessing out of the process.
+
+There is nowhere really to inject the Spire of Eternity guide, so it is instead hosted as its own page. The page can be found at <a href="https://ksp4r.github.io/FA_waypoint_optimiser/"> this link.</a> This was moreso a matter of me playing around with hosting a site from github, but i'll look into fleshing it out a little more in the future.
