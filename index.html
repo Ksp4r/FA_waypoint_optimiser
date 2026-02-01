@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <base href="./Spire/">
+        <title>Spire of Eternity</title>
+        <link rel="stylesheet" href="Spire.css">
+    </head>
+    <body>
+        <template id="Temp">
+            <div class="port">
+                <button class="addBtn">+</button>
+                <button class="rmvBtn">-</button>
+            </div>
+            <div class="res">
+                <p>R1</p>
+                <button class="addBtn">+</button>
+                <button class="rmvBtn">-</button>
+            </div>
+            <div class="choice">
+                <select class="select input">
+                </select>
+                <div class="select output" value="Y" onclick="MarkToggle(this);"></div>
+            </div>
+            <button class="turnBtn" onclick="Turn.new();">Input Turn</button>
+        </template>
+        <div class="container">
+            <div class="portrait Map"></div>
+            <div class="resource Map"></div>
+        </div>
+        <div class="turnMap"></div>
+    </body>
+    <script src="Spire.js"></script>
+</html>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="35.00489"
+   height="35.005001"
+   viewBox="0 0 35.000002 35.000113"
+   version="1.1"
+   id="svg4"
+   sodipodi:docname="Marker_Red.svg"
+   inkscape:export-filename="Marker_Red.png"
+   inkscape:export-xdpi="600.1"
+   inkscape:export-ydpi="600.1"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs8">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient939">
+      <stop
+         style="stop-color:#967319;stop-opacity:1;"
+         offset="0.19999997"
+         id="stop937" />
+      <stop
+         style="stop-color:#dacf29;stop-opacity:1;"
+         offset="1"
+         id="stop935" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient931">
+      <stop
+         style="stop-color:#969696;stop-opacity:0;"
+         offset="0.30000001"
+         id="stop927" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0.80970156;"
+         offset="1"
+         id="stop929" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient931"
+       id="radialGradient933"
+       cx="15.112751"
+       cy="14.953655"
+       fx="15.112751"
+       fy="14.953655"
+       r="14.997905"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.4046805,0,0,1.4046807,-6.2495943,-6.19413)" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient939"
+       id="radialGradient941"
+       cx="17.677773"
+       cy="17.558931"
+       fx="17.677773"
+       fy="17.558931"
+       r="17.497557"
+       gradientUnits="userSpaceOnUse"
+       spreadMethod="reflect"
+       gradientTransform="matrix(0.30722743,0,0,0.3072274,12.246675,12.164346)" />
+  </defs>
+  <sodipodi:namedview
+     id="namedview6"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     showgrid="false"
+     inkscape:zoom="8.4133955"
+     inkscape:cx="0.29714519"
+     inkscape:cy="15.986411"
+     inkscape:window-width="1680"
+     inkscape:window-height="992"
+     inkscape:window-x="1676"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg4" />
+  <path
+     id="path338"
+     style="fill:#e31616;fill-opacity:1;stroke-width:2.83558;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+     d="M 32.497906,17.500056 A 14.997905,14.997905 0 0 1 17.500001,32.497962 14.997905,14.997905 0 0 1 2.502096,17.500056 14.997905,14.997905 0 0 1 17.500001,2.5021509 14.997905,14.997905 0 0 1 32.497906,17.500056 Z" />
+  <path
+     id="path1795"
+     style="fill:url(#radialGradient933);fill-opacity:1;stroke-width:2.83558;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+     d="M 32.497906,17.500056 A 14.997905,14.997905 0 0 1 17.500001,32.497962 14.997905,14.997905 0 0 1 2.502096,17.500056 14.997905,14.997905 0 0 1 17.500001,2.5021509 14.997905,14.997905 0 0 1 32.497906,17.500056 Z" />
+  <path
+     id="path341"
+     style="display:inline;fill:url(#radialGradient941);fill-opacity:1;stroke-width:2.99958;stroke-linecap:round;stroke-linejoin:round;paint-order:markers fill stroke"
+     d="M 17.499509,0.00195285 A 17.497557,17.497557 0 0 0 0.00195285,17.499509 17.497557,17.497557 0 0 0 17.499509,34.997065 17.497557,17.497557 0 0 0 34.997065,17.499509 17.497557,17.497557 0 0 0 17.499509,0.00195285 Z m 0,3.49951125 A 13.998045,13.998045 0 0 1 31.497554,17.499509 13.998045,13.998045 0 0 1 17.499509,31.497554 13.998045,13.998045 0 0 1 3.5014641,17.499509 13.998045,13.998045 0 0 1 17.499509,3.5014641 Z" />
+</svg>

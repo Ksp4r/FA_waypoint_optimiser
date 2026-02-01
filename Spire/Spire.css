@@ -1,0 +1,99 @@
+:root {
+    --pW: 120px;
+    --pH: 220px;
+}
+.container {
+    display: flex;
+    padding-top: 20px;
+    gap: 20px;
+    flex-flow: column;
+    align-items: center;
+}
+.Map {
+    display:flex;
+}
+
+.turnMap {
+    display:flex;
+    margin-top: 20px;
+    flex-flow:column;
+    align-items: center;
+    margin-left: var(--pW);
+}
+.turn {
+    display:flex;
+
+}
+.turn:not(:last-child) {
+    pointer-events: none;
+}
+.turnBtn {
+    width: calc(var(--pW) - 4px);
+    padding: 2px;
+}
+
+.port {
+    display:flex;
+    flex-flow: column;
+    width: var(--pW);
+    height: var(--pH);
+    background: url('Portrait.png');
+    background-size: var(--pW) var(--pH);
+    background-position: center;
+    justify-content: flex-end;
+    align-items: center;
+}
+.port * {
+    margin-left: 5px;
+}
+.res {
+    display:flex;
+    flex-flow: column;
+    width: 52px;
+    height: 71px;
+    margin-right: 5px;
+    Background: url('Resource.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    justify-content: flex-start;
+    align-items: center;
+}
+.res p {
+    margin: 10px 0 0 0;
+    font-weight: bold;
+    color: black;
+    filter: drop-shadow(goldenrod 0 0 1px);
+}
+.choice {
+    display: flex;
+    flex-flow: column;
+    width: var(--pW);
+}
+.complete {
+    pointer-events: none;
+}
+.complete .select.output {
+    background-image: url('Marker_G.svg');
+}
+.select.output{
+    background-image: url("Marker_Y.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    width:100%;
+    height:30px;
+}
+.Map button{
+    display:none;
+    width: 100%;
+    max-width: 75px;
+}
+.Map *:last-child > button{
+    display: block;
+}
+.Map *:first-child > .rmvBtn{
+    display: none;
+}
