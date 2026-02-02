@@ -12,6 +12,7 @@ body{
     margin: 0;
     background-image: linear-gradient(to right, var(--gradOUT) -10%, var(--gradIN) 30%, var(--gradIN) 70%, var(--gradOUT) 110%), url('Stone_DISP.png');
     background-size: 100%, 45%;
+    text-align: center;
 }
 .container {
     display: flex;
@@ -107,3 +108,4 @@ body{
 .Map *:first-child > .rmvBtn{
     display: none;
 }
+
