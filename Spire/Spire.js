@@ -136,8 +136,6 @@ const Turn = {
             }
             turn.append(choice);
         }
-        let tEnd = document.querySelector('#Temp').content.children[3].cloneNode(true);
-        turn.append(tEnd);
         Turn.count += 1;
     },
 };
@@ -151,4 +149,5 @@ function MarkToggle(node){
 for (let i = 0; i < 4; i++){
     Person.add();
     Resource.add();
+
 }
