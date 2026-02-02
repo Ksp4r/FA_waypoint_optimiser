@@ -41,6 +41,8 @@ body{
 .turnBtn {
     width: calc(var(--pW) - 4px);
     padding: 2px;
+    height: 3em;
+    margin-top: 20px;
 }
 
 .port {
@@ -108,4 +110,5 @@ body{
 .Map *:first-child > .rmvBtn{
     display: none;
 }
+
 
