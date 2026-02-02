@@ -1,6 +1,17 @@
 :root {
     --pW: 120px;
     --pH: 220px;
+    --gradIN: hsla(80, 40%, 85%, 0.85);
+    --gradOUT: hsla(80, 20%, 20%, 0.75);
+}
+html, body{
+    width: 100%;
+    height: 100%;
+}
+body{
+    margin: 0;
+    background-image: linear-gradient(to right, var(--gradOUT) -10%, var(--gradIN) 30%, var(--gradIN) 70%, var(--gradOUT) 110%), url('Stone_DISP.png');
+    background-size: 100%, 45%;
 }
 .container {
     display: flex;
@@ -12,7 +23,6 @@
 .Map {
     display:flex;
 }
-
 .turnMap {
     display:flex;
     margin-top: 20px;
