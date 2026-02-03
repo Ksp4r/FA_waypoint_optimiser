@@ -32,16 +32,15 @@ body{
 }
 .turn {
     display:flex;
-
 }
 .turn:not(:last-child) {
     pointer-events: none;
 }
 .turnBtn {
     width: calc(var(--pW) - 4px);
-    padding: 2px;
     height: 3em;
     margin-top: 20px;
+    padding: 2px;
 }
 
 .port {
@@ -109,6 +108,3 @@ body{
 .Map *:first-child > .rmvBtn{
     display: none;
 }
-
-
-
