@@ -38,7 +38,7 @@ var stored = [];
     `;
 }
 
-//#region Build html layout items
+//#region Build html items
 const bar = document.createElement('div'); bar.id="EA_Bar"; bar.classList.add('kspar-leftBar'); document.body.append(bar);
 
 let a = document.createElement('a'); a.textContent = "Culture Ranking"; a.setAttribute('value','Culture'); a.classList.add('kspar-button','kspar-filter');
@@ -91,7 +91,7 @@ const Status = {
     }
 };
 
-function hlON(e){// Highlight buildings of the same rank by dimming other ranks
+function hlON(e){// Highlight buildings of the same rank by dimming others
     const r = e.target.getAttribute('rank');
     for (let b of buildings.filter(b => b.node.getAttribute('rank') != r)){
         b.node.classList.add('rNull');
@@ -100,7 +100,7 @@ function hlON(e){// Highlight buildings of the same rank by dimming other ranks
         k.classList.add('rNull');
     }
 }
-function hlOFF(){// Remove rank highlighting & restore visuals
+function hlOFF(){// Remove highlighting & restore visuals
     for (let b of buildings.filter(b => b.node.getAttribute('rank') != 'null')){
         b.node.classList.remove('rNull');
     }
@@ -147,14 +147,15 @@ function EA_Rank_Click(e){
 
     parse(); // Calling this ensures changes to the layout are considered 
 
+    //Compile a list of critical buildings: must have value > 0, and only consider each building type once.
     const critical = buildings.sort((a, b) => b[param] - a[param])
-        .filter(b => buildings.find(t => t.title == b.title && t.chapter == b.chapter) === b)
+        .filter(b => buildings.find(t => t.title == b.title && t[param] == b[param]) === b)
         .filter(b=> b[param] > 0);
     const ave = critical.reduce((a, b) => a + b[param], 0) / critical.length;
     const SumSqDiff = critical.reduce((a, b)=> a + (b[param] - ave) ** 2, 0);
     const StDiv = Math.sqrt(SumSqDiff / critical.length);
-    const values = [];
-    let mark; // mark indicates where the border for mean value is located
+
+    let mark; // mark indicates where the mean line is located
     
     //Reset contents for the legend
     let lbl = document.createElement('p'); Object.assign(lbl.style, {textAlign:"center", color:'black', fontWeight:'bold', 
@@ -225,7 +226,7 @@ function EA_Rank_Click(e){
         //Create an overlay, and clone it to all the buildings of equal rank
         let r = document.createElement('pre'); r.id = "rank"; r.classList.add(`r${i}`, 'ranked');
         r.textContent = i; r.setAttribute('rank',i);
-        for(let b of buildings.filter(b=> b.title == critical[i].title && b.chapter == critical[i].chapter)){
+        for(let b of buildings.filter(b=> b.title == critical[i].title && b[param] == critical[i][param])){
             b.node.setAttribute('rank',i);
             let o = r.cloneNode(true); o.addEventListener('mouseenter', hlON); o.addEventListener('mouseleave', hlOFF);
             b.node.append(o);
@@ -242,7 +243,7 @@ function EA_Rank_Click(e){
         scale:`${Math.min(1, (bounds.height - 15) / (rect.top + rect.height))}`
     });
 }
-function clear(){
+function clear(){// Clear ranking
     Status.filter = null;
     for (let b of buildings){
         b.node.classList.remove('rNull');
